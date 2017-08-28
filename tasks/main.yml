@@ -1,0 +1,19 @@
+---
+- name: install_packages
+  package:
+    name: "{{ ','.join(psql_packages) }}"
+    state: latest
+
+- name: set_prompt
+  lineinfile:
+    dest: ~{{ psql_user }}/.psqlrc
+    create: True
+    owner: "{{ psql_user }}"
+    group: "{{ psql_group }}"
+    regexp: "^\\\\set PROMPT1"
+    line: >-
+      \set PROMPT1 '%M:%>
+      %[%033[{{ psql_prompt_color[env] }}%][{{ env|upper }}]%[%033[0m%]
+      %n@%/%R%#%x '
+    state: present
+

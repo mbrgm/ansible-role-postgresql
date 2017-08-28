@@ -1,0 +1,12 @@
+---
+psql_packages:
+  - postgresql
+  - python-psycopg2
+
+psql_user: postgres
+psql_group: postgres
+
+psql_prompt_color:
+  dev: 0;0m
+  stage: 0;33m
+  prod: 0;37;41m
